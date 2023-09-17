@@ -1,0 +1,3 @@
+# BDD格式转YOLO
+
+bdd的数据集原有的数据分布，是已经划分好了train和val，并且已经把images和label都划分好了，基本上和yolo一样，但是label不一样，BDD的label是json格式，每一个图片一个json文件，转化为YOLO的格式就是需要把每一个json文件转为txt就行
