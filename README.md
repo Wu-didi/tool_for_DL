@@ -7,8 +7,7 @@ Analysis_dataset文件夹
 统计目标框的长宽比和高度用直方图展示
 
 ## frame2video.py
-将连续帧转化为视频（mp4格式）
-'''python
+将连续帧转化为视频（mp4格式）\n
+
  python frames2video.py --image_folder ./data/source/train/ --video_name origin_result.mp4 --resize --resize-shape 728 256
-'''
 
