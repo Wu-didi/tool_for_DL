@@ -26,7 +26,8 @@ def convert_images_to_video(image_folder, video_name, fps=5, resize_shape=None):
     video = cv2.VideoWriter(video_name, fourcc, fps, (width, height))  
   
     # 重新调整图像大小（如果指定了形状）  
-    if resize_shape:  
+    if resize_shape:
+        video = cv2.VideoWriter(video_name, fourcc, fps, (resize_width, resize_height))    
         for image in tqdm(images):  
             resized_image = cv2.resize(cv2.imread(os.path.join(image_folder, image)), (resize_width, resize_height))  
             video.write(resized_image)  
