@@ -4,13 +4,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # 数据集路径
-dataset_path = r"./mask2"
-image_folder = os.path.join(dataset_path, "images/train")
-label_folder = os.path.join(dataset_path, "labels/train")
+dataset_path = r"/home/wudi/python_files/hefei_make_dataset/hefei_yolo_format_v2.0"
+# image_folder = os.path.join(dataset_path, "images/train")
+# label_folder = os.path.join(dataset_path, "labels/train")
+image_folder = os.path.join(dataset_path, "val/images")
+label_folder = os.path.join(dataset_path, "val/labels")
 
 # 设置热力图大小和精度
 heatmap_size = (640, 640)
-heatmap_precision = 4
+heatmap_precision = 1
 
 # 初始化热力图
 heatmap = np.zeros(heatmap_size, dtype=np.float32)
@@ -18,8 +20,8 @@ i=1
 # 遍历标签文件夹，计算每个标注框的位置
 for label_file in os.listdir(label_folder):
 
-    print("label_file",label_file)
-    print(i)
+    # print("label_file",label_file)
+    # print(i)
     i+=1
     label_path  = os.path.join(label_folder,label_file)
     # 获取图片文件名
@@ -51,19 +53,22 @@ heatmap /= np.max(heatmap)
 # 将热力图转换成RGB格式
 heatmap_rgb = cv2.applyColorMap(np.uint8(heatmap*255), cv2.COLORMAP_JET)
 
-# 将热力图和原图叠加在一起
-image = cv2.imread(os.path.join(image_folder, os.listdir(image_folder)[0]))
-image = cv2.resize(image,(640,640))
+# # 将热力图和原图叠加在一起
+# image = cv2.imread(os.path.join(image_folder, os.listdir(image_folder)[0]))
+# image = cv2.resize(image,(640,640))
 
-#设置纯黑色的背景进行叠加
-# image = np.zeros((heatmap_size[0], heatmap_size[1], 3), dtype=np.uint8)
-# image[:, :] = (0, 0, 0)
+# 设置纯黑色的背景进行叠加
+image = np.zeros((heatmap_size[0], heatmap_size[1], 3), dtype=np.uint8)
+image[:, :] = (0, 0, 0)
 
 
-print(heatmap_rgb.shape)
-print(image.shape)
+# print(heatmap_rgb.shape)
+# print(image.shape)
 heatmap_with_image = cv2.addWeighted(heatmap_rgb, 0.5, image, 0.5, 0)
 
 # 显示热力图和原图叠加在一起的结果
 plt.imshow(cv2.cvtColor(heatmap_with_image, cv2.COLOR_BGR2RGB))
 plt.show()
+
+# 保存
+cv2.imwrite("heatmap.jpg", heatmap_with_image)

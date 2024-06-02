@@ -70,5 +70,5 @@ def plot_bbox_distribution_for_dataset(data_dir):
     plot_bbox_height_distribution(label_files)
     plot_bbox_aspect_ratio_distribution(label_files)
 
-data_dir = './mask2/labels/train'
+data_dir = "/home/wudi/python_files/hefei_make_dataset/hefei_yolo_format_v2.0/train/labels"
 plot_bbox_distribution_for_dataset(data_dir)
