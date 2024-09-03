@@ -4,8 +4,8 @@ import os
 import csv
 import matplotlib.pyplot as plt
 
-label_dir = './mask2/labels/train'
-img_dir = './mask2/images/train'
+label_dir  = "/data/hefei-dataset/hefei_yolo_format_v2.4/train/labels"
+img_dir = "/data/hefei-dataset/hefei_yolo_format_v2.4/train/images"
 
 # 字典用于存储每个类别的长宽和长宽比信息
 class_stats = {}
