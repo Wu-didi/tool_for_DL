@@ -1,6 +1,6 @@
 import os
 import xml.etree.ElementTree as ET
-
+'''合肥项目代码'''
 # 定义类别
 classes = [
     "veh_normal_signal",
